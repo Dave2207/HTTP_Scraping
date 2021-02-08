@@ -22,7 +22,16 @@ public class App {
 
         //Busco parrafos y demás componentes
         Elements parrafos = doc.select("p");
+        Elements imagenes = doc.select("p > img");
+        Elements formulariosGET = doc.select("form[GET]");
+        Elements formulariosPOST = doc.select("form[POST]");
+        Elements inputFormularios = doc.select("form > input");
+
         System.out.println("La cantidad de párrafos en esta página es: " + parrafos.size());
+        System.out.println("La cantidad de imagenes dentro de párrafos es: " + imagenes.size());
+        System.out.println("La cantidad de formularios con el método GET es:" + formulariosGET.size());
+        System.out.println("La cantidad de formularios con el método GET es:" + formulariosPOST.size());
+
         
 
         //Titulo de la pagina
