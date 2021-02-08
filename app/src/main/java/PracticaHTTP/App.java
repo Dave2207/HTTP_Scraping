@@ -13,7 +13,7 @@ import org.jsoup.select.Elements;
 public class App {
 
     public static void main(String[] args) throws IOException{
-        String direccionPagina = "https://en.wikipedia.org";
+        String direccionPagina = "https://campusvirtual.pucmm.edu.do/";
         Document doc;
 
         //Estableciendo conexion usando Jsoup
@@ -23,15 +23,18 @@ public class App {
         //Busco parrafos y demás componentes
         Elements parrafos = doc.select("p");
         Elements imagenes = doc.select("p > img");
-        Elements formulariosGET = doc.select("form[GET]");
-        Elements formulariosPOST = doc.select("form[POST]");
-        Elements inputFormularios = doc.select("form > input");
+        Elements formulariosGET = doc.select("form[method=GET]");
+        Elements formulariosPOST = doc.select("form[method=POST]");
+        Elements inputFormularios = doc.select("form");
 
         System.out.println("La cantidad de párrafos en esta página es: " + parrafos.size());
         System.out.println("La cantidad de imagenes dentro de párrafos es: " + imagenes.size());
         System.out.println("La cantidad de formularios con el método GET es:" + formulariosGET.size());
-        System.out.println("La cantidad de formularios con el método GET es:" + formulariosPOST.size());
+        System.out.println("La cantidad de formularios con el método POST es:" + formulariosPOST.size());
 
+        for (Element forms : inputFormularios) {
+            System.out.println(forms);
+        }
         
 
         //Titulo de la pagina
