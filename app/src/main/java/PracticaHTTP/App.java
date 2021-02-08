@@ -12,24 +12,30 @@ import org.jsoup.select.Elements;
 
 public class App {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException{
+        String direccionPagina = "https://en.wikipedia.org";
         Document doc;
-        try {
-            doc = Jsoup.connect("https://en.wikipedia.org/").get();
 
-            //Titulo de la pagina
-            String title = doc.title();
-            System.out.println("Titulo: "+ title);
+        //Estableciendo conexion usando Jsoup
+        doc = Jsoup.connect(direccionPagina).get();
+        System.out.println(doc.title());
 
-            //Links en la pagina
-            Elements links = doc.select("a[href]");
-            for (Element link : links) {
-                System.out.println("\nLink: " + link.attr("href"));
-                System.out.println("Text: " + link.text());
-            }
-        } catch(IOException e){
-            e.printStackTrace();
-        }
+        //Busco parrafos y demás componentes
+        Elements parrafos = doc.select("p");
+        System.out.println("La cantidad de párrafos en esta página es: " + parrafos.size());
+        
+
+        //Titulo de la pagina
+        // String title = doc.title();
+        // System.out.println("Titulo: "+ title);
+
+        //Links en la pagina
+        // Elements links = doc.select("a[href]");
+        // for (Element link : links) {
+        //     System.out.println("\nLink: " + link.attr("href"));
+        //     System.out.println("Text: " + link.text());
+        // }
+
     }
 
 }

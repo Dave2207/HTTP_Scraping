@@ -25,6 +25,8 @@ dependencies {
     implementation 'com.google.guava:guava:29.0-jre'
     //Jsoup
     compile 'org.jsoup:jsoup:1.13.1'
+    //Apache
+    compile 'org.apache.httpcomponents:httpclient:4.5.13'
 }
 
 application {
