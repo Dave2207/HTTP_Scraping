@@ -25,15 +25,17 @@ public class App {
         Elements imagenes = doc.select("p > img");
         Elements formulariosGET = doc.select("form[method=GET]");
         Elements formulariosPOST = doc.select("form[method=POST]");
-        Elements inputFormularios = doc.select("form");
+        Elements inputFormularios = doc.select("input");
 
+        //Imprimo salidas correspondientes
         System.out.println("La cantidad de párrafos en esta página es: " + parrafos.size());
         System.out.println("La cantidad de imagenes dentro de párrafos es: " + imagenes.size());
         System.out.println("La cantidad de formularios con el método GET es:" + formulariosGET.size());
         System.out.println("La cantidad de formularios con el método POST es:" + formulariosPOST.size());
-
-        for (Element forms : inputFormularios) {
-            System.out.println(forms);
+        
+        System.out.println("Los input de los formularios de este enlace son:\n");
+        for (Element inputs : inputFormularios) {
+            System.out.println(inputs.attr("name"));
         }
         
 
