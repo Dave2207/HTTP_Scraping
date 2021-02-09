@@ -10,16 +10,23 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+
 public class App {
 
     public static void main(String[] args) throws IOException{
-        String direccionPagina = "https://campusvirtual.pucmm.edu.do/";
+        String direccionPagina = "https://www.google.com.do";
         Document doc;
 
         //Estableciendo conexion usando Jsoup
         doc = Jsoup.connect(direccionPagina).get();
-        System.out.println(doc.title());
+        System.out.println(doc.html());
 
+        //Cantidad de lineas
+        String[] lineas;
+        String texto = Jsoup.connect(direccionPagina).execute().body();
+        lineas = texto.split("\n");
+        System.out.println("La cantidad de líneas en la página es: " + lineas.length);
+        
         //Busco parrafos y demás componentes
         Elements parrafos = doc.select("p");
         Elements imagenes = doc.select("p > img");
@@ -33,11 +40,14 @@ public class App {
         System.out.println("La cantidad de formularios con el método GET es:" + formulariosGET.size());
         System.out.println("La cantidad de formularios con el método POST es:" + formulariosPOST.size());
         
-        System.out.println("Los input de los formularios de este enlace son:\n");
+        System.out.println("\nLos input de los formularios de este enlace son:\n");
         for (Element inputs : inputFormularios) {
-            System.out.println(inputs.attr("name"));
+            System.out.println("Name: " + inputs.attr("name") + "\tType: " + inputs.attr("type"));
         }
-        
+
+        // for (Element formulario : formulariosPOST) {
+        //     formulario;
+        // }
 
         //Titulo de la pagina
         // String title = doc.title();
