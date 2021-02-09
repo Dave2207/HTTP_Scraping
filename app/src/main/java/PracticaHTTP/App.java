@@ -9,17 +9,19 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
+import java.util.Scanner;
 
 public class App {
 
     public static void main(String[] args) throws IOException{
-        String direccionPagina = "https://www.google.com.do";
         Document doc;
-
+        String direccionPagina = "https://www.google.com.do/";
+        // System.out.println("Escriba una URL válida: ");
+        // Scanner scan = new Scanner(System.in);
+        // direccionPagina = scan.nextLine();
+        // scan.close();
         //Estableciendo conexion usando Jsoup
         doc = Jsoup.connect(direccionPagina).get();
-        System.out.println(doc.html());
 
         //Cantidad de lineas
         String[] lineas;
@@ -45,21 +47,12 @@ public class App {
             System.out.println("Name: " + inputs.attr("name") + "\tType: " + inputs.attr("type"));
         }
 
-        // for (Element formulario : formulariosPOST) {
-        //     formulario;
-        // }
-
-        //Titulo de la pagina
-        // String title = doc.title();
-        // System.out.println("Titulo: "+ title);
-
-        //Links en la pagina
-        // Elements links = doc.select("a[href]");
-        // for (Element link : links) {
-        //     System.out.println("\nLink: " + link.attr("href"));
-        //     System.out.println("Text: " + link.text());
-        // }
-
+        for (Element formulario : formulariosPOST) {
+            String actionPagina = formulario.attr("action");
+            Document peticionServidor = Jsoup.connect(actionPagina).data("asignatura", "practica1").header("Matricula", "20170019").post();
+            System.out.println(peticionServidor.body().toString());
+        }
+        
     }
 
 }
