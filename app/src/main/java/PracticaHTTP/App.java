@@ -15,11 +15,11 @@ public class App {
 
     public static void main(String[] args) throws IOException{
         Document doc;
-        String direccionPagina = "https://www.google.com.do/";
-        // System.out.println("Escriba una URL válida: ");
-        // Scanner scan = new Scanner(System.in);
-        // direccionPagina = scan.nextLine();
-        // scan.close();
+        String direccionPagina = "";
+        System.out.println("Escriba una URL válida: ");
+        Scanner scan = new Scanner(System.in);
+        direccionPagina = scan.nextLine();
+        scan.close();
         //Estableciendo conexion usando Jsoup
         doc = Jsoup.connect(direccionPagina).get();
 

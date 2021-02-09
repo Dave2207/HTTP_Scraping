@@ -33,3 +33,7 @@ application {
     // Define the main class for the application.
     mainClass = 'PracticaHTTP.App'
 }
+
+run {
+    standardInput = System.in
+}
