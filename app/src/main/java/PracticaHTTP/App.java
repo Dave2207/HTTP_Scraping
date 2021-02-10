@@ -46,7 +46,7 @@ public class App {
         for (Element formulario : formulariosPOST) {
             String actionPagina = formulario.attr("action");
             Document peticionServidor = Jsoup.connect(actionPagina).data("asignatura", "practica1").header("Matricula", "20170019").post();
-            System.out.println(peticionServidor.body().toString());
+            System.out.println("\nLa respuesta del servidor es la siguiente: \n" + peticionServidor.body().toString());
         }
         
     }
